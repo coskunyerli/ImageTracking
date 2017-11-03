@@ -2,7 +2,7 @@
 
 ### Image Tracking with openCV and openGL written C++
 
-##Required Libraries
+## Required Libraries
 - OpenCV (for tracking)
 - OpenGL (for visualization)
 - GLFW (to put scene into screen)
