@@ -22,7 +22,7 @@
 
 `brew install opencv3`
 
-###Linux
+### Linux
 
 ```
 sudo apt-get update
@@ -35,7 +35,7 @@ sudo apt-get install libglfw3-dev
 ## Usage
 `>./<Program-name> <tracking-type>`
 
-####Example
+#### Example
 
 `>./Visualization MIL`
 
