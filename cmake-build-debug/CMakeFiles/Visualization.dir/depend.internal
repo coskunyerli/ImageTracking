@@ -110,7 +110,6 @@ CMakeFiles/Visualization.dir/Model.cpp.o
  /Users/coskunyerli/CLionProjects/Visualization/Camera.h
  /Users/coskunyerli/CLionProjects/Visualization/Model.cpp
  /Users/coskunyerli/CLionProjects/Visualization/Model.h
- /Users/coskunyerli/CLionProjects/Visualization/SOIL2/SOIL2.h
  /Users/coskunyerli/CLionProjects/Visualization/Shader.h
  /Users/coskunyerli/CLionProjects/Visualization/glad/glad.h
  /Users/coskunyerli/CLionProjects/Visualization/glad/khrplatform.h
@@ -334,7 +333,6 @@ CMakeFiles/Visualization.dir/Scene.cpp.o
  /Users/coskunyerli/CLionProjects/Visualization/Camera.h
  /Users/coskunyerli/CLionProjects/Visualization/Model.h
  /Users/coskunyerli/CLionProjects/Visualization/Rectangle.h
- /Users/coskunyerli/CLionProjects/Visualization/SOIL2/SOIL2.h
  /Users/coskunyerli/CLionProjects/Visualization/Scene.cpp
  /Users/coskunyerli/CLionProjects/Visualization/Scene.h
  /Users/coskunyerli/CLionProjects/Visualization/Shader.h
@@ -793,7 +791,6 @@ CMakeFiles/Visualization.dir/main.cpp.o
  /Users/coskunyerli/CLionProjects/Visualization/Camera.h
  /Users/coskunyerli/CLionProjects/Visualization/Model.h
  /Users/coskunyerli/CLionProjects/Visualization/Rectangle.h
- /Users/coskunyerli/CLionProjects/Visualization/SOIL2/SOIL2.h
  /Users/coskunyerli/CLionProjects/Visualization/Scene.h
  /Users/coskunyerli/CLionProjects/Visualization/Shader.h
  /Users/coskunyerli/CLionProjects/Visualization/glad/glad.h

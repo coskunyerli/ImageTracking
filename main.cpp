@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include "Model.h"
 #include "Scene.h"
+#include <array>
+#include <string>
 #include <iostream>
 
 void click_callback(GLFWwindow *window, int button, int action, int mods);
@@ -11,11 +13,26 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 1280;
 const unsigned int SCR_HEIGHT = 720;
+const std::array<std::string, 4> TRACKINGNAMES = {"MIL", "BOOSTING", "KCF", "TLD"};
 
 
 Scene *scene;
+char *trackingName;
 
-int main() {
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+
+        std::cout << "Wrong Usage" << std::endl;
+        std::cout << "Example " << std::endl;
+        std::cout << "./Visualization MIL" << std::endl;
+        return -1;
+    }
+
+    trackingName = argv[1];
+    if (std::find(TRACKINGNAMES.begin(), TRACKINGNAMES.end(), trackingName) == TRACKINGNAMES.end()) {
+        std::cout << "Tracking method is not valid" << std::endl;
+        return -1;
+    }
     // set core profile
     // ------------------------------
     glfwInit();
@@ -109,8 +126,8 @@ void click_callback(GLFWwindow *window, int button, int action, int mods) {
         glfwGetCursorPos(window, &xPos, &yPos);
     } else if (action == GLFW_RELEASE) {
         glfwGetCursorPos(window, &xReleasePos, &yReleasePos);
-        cv::Rect2d rect(cv::Point2d((int)xPos, (int)yPos), cv::Point2d((int)xReleasePos,(int)yReleasePos));
-        scene->setTracker(cv::Tracker::create("MIL"));
+        cv::Rect2d rect(cv::Point2d((int) xPos, (int) yPos), cv::Point2d((int) xReleasePos, (int) yReleasePos));
+        scene->setTracker(cv::Tracker::create(trackingName));
         scene->setRect(rect);
 
 

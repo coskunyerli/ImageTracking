@@ -109,7 +109,6 @@ CMakeFiles/Visualization.dir/Camera.cpp.o: /usr/local/include/glm/vector_relatio
 CMakeFiles/Visualization.dir/Model.cpp.o: ../Camera.h
 CMakeFiles/Visualization.dir/Model.cpp.o: ../Model.cpp
 CMakeFiles/Visualization.dir/Model.cpp.o: ../Model.h
-CMakeFiles/Visualization.dir/Model.cpp.o: ../SOIL2/SOIL2.h
 CMakeFiles/Visualization.dir/Model.cpp.o: ../Shader.h
 CMakeFiles/Visualization.dir/Model.cpp.o: ../glad/glad.h
 CMakeFiles/Visualization.dir/Model.cpp.o: ../glad/khrplatform.h
@@ -333,7 +332,6 @@ CMakeFiles/Visualization.dir/Rectangle.cpp.o: /usr/local/include/opencv2/opencv_
 CMakeFiles/Visualization.dir/Scene.cpp.o: ../Camera.h
 CMakeFiles/Visualization.dir/Scene.cpp.o: ../Model.h
 CMakeFiles/Visualization.dir/Scene.cpp.o: ../Rectangle.h
-CMakeFiles/Visualization.dir/Scene.cpp.o: ../SOIL2/SOIL2.h
 CMakeFiles/Visualization.dir/Scene.cpp.o: ../Scene.cpp
 CMakeFiles/Visualization.dir/Scene.cpp.o: ../Scene.h
 CMakeFiles/Visualization.dir/Scene.cpp.o: ../Shader.h
@@ -792,7 +790,6 @@ CMakeFiles/Visualization.dir/Tracker.cpp.o: /usr/local/include/opencv2/opencv_mo
 CMakeFiles/Visualization.dir/main.cpp.o: ../Camera.h
 CMakeFiles/Visualization.dir/main.cpp.o: ../Model.h
 CMakeFiles/Visualization.dir/main.cpp.o: ../Rectangle.h
-CMakeFiles/Visualization.dir/main.cpp.o: ../SOIL2/SOIL2.h
 CMakeFiles/Visualization.dir/main.cpp.o: ../Scene.h
 CMakeFiles/Visualization.dir/main.cpp.o: ../Shader.h
 CMakeFiles/Visualization.dir/main.cpp.o: ../glad/glad.h

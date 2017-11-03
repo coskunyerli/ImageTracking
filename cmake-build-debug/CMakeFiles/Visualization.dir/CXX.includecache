@@ -37,8 +37,6 @@ glm/gtc/matrix_transform.hpp
 -
 glm/gtc/type_ptr.hpp
 -
-SOIL2/SOIL2.h
-/Users/coskunyerli/CLionProjects/Visualization/SOIL2/SOIL2.h
 string
 -
 
@@ -55,8 +53,6 @@ Shader.h
 /Users/coskunyerli/CLionProjects/Visualization/Shader.h
 Camera.h
 /Users/coskunyerli/CLionProjects/Visualization/Camera.h
-
-/Users/coskunyerli/CLionProjects/Visualization/SOIL2/SOIL2.h
 
 /Users/coskunyerli/CLionProjects/Visualization/Scene.cpp
 Scene.h
@@ -147,6 +143,10 @@ Model.h
 /Users/coskunyerli/CLionProjects/Visualization/Model.h
 Scene.h
 /Users/coskunyerli/CLionProjects/Visualization/Scene.h
+array
+-
+string
+-
 iostream
 -
 

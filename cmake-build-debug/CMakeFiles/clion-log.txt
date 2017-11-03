@@ -1,6 +1,6 @@
 /Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/coskunyerli/CLionProjects/Visualization
 -- OpenGL found
--- Glew found
+-- Glew was not found
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/coskunyerli/CLionProjects/Visualization/cmake-build-debug
