@@ -17,7 +17,7 @@ public:
     void draw(Shader &shader, Camera &camera);
 
     void remove();
-    float vertices[24] = {
+    double vertices[24] = {
             1.0001f, -1.0001f, 0.5f,
             -1.0001f, -1.0001f, 0.5f,
 

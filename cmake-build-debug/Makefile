@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Tracker
+
+# Build rule for target.
+Tracker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Tracker
+.PHONY : Tracker
+
+# fast build rule for target.
+Tracker/fast:
+	$(MAKE) -f CMakeFiles/Tracker.dir/build.make CMakeFiles/Tracker.dir/build
+.PHONY : Tracker/fast
+
+#=============================================================================
 # Target rules for targets named Visualization
 
 # Build rule for target.
@@ -339,6 +352,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Visualization.dir/build.make CMakeFiles/Visualization.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+track.o: track.cpp.o
+
+.PHONY : track.o
+
+# target to build an object file
+track.cpp.o:
+	$(MAKE) -f CMakeFiles/Tracker.dir/build.make CMakeFiles/Tracker.dir/track.cpp.o
+.PHONY : track.cpp.o
+
+track.i: track.cpp.i
+
+.PHONY : track.i
+
+# target to preprocess a source file
+track.cpp.i:
+	$(MAKE) -f CMakeFiles/Tracker.dir/build.make CMakeFiles/Tracker.dir/track.cpp.i
+.PHONY : track.cpp.i
+
+track.s: track.cpp.s
+
+.PHONY : track.s
+
+# target to generate assembly for a file
+track.cpp.s:
+	$(MAKE) -f CMakeFiles/Tracker.dir/build.make CMakeFiles/Tracker.dir/track.cpp.s
+.PHONY : track.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -347,6 +387,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... Tracker"
 	@echo "... Visualization"
 	@echo "... Camera.o"
 	@echo "... Camera.i"
@@ -372,6 +413,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... track.o"
+	@echo "... track.i"
+	@echo "... track.s"
 .PHONY : help
 
 

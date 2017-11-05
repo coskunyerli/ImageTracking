@@ -1,3 +1,4 @@
 /Users/coskunyerli/CLionProjects/Visualization/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/coskunyerli/CLionProjects/Visualization/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/coskunyerli/CLionProjects/Visualization/cmake-build-debug/CMakeFiles/Tracker.dir
 /Users/coskunyerli/CLionProjects/Visualization/cmake-build-debug/CMakeFiles/Visualization.dir

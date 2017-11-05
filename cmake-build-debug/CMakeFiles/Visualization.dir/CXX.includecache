@@ -67,6 +67,8 @@ Model.h
 /Users/coskunyerli/CLionProjects/Visualization/Model.h
 Rectangle.h
 /Users/coskunyerli/CLionProjects/Visualization/Rectangle.h
+Tracker.h
+/Users/coskunyerli/CLionProjects/Visualization/Tracker.h
 opencv2/opencv.hpp
 -
 opencv2/core/utility.hpp
@@ -103,7 +105,7 @@ Tracker.h
 /Users/coskunyerli/CLionProjects/Visualization/Tracker.h
 
 /Users/coskunyerli/CLionProjects/Visualization/Tracker.h
-opencv2/core/mat.hpp
+opencv2/opencv.hpp
 -
 
 /Users/coskunyerli/CLionProjects/Visualization/glad/glad.h

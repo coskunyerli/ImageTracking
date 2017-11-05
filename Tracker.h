@@ -6,13 +6,23 @@
 #define TRACKER_TRACKER_H
 
 
-#include <opencv2/core/mat.hpp>
+#include <opencv2/opencv.hpp>
 
 class Tracker {
+public:
 
-    void init(cv::Mat &frame, cv::Rect2d rect);
+    void init(cv::Mat &frame, cv::Rect2d &rect);
 
     bool update(cv::Mat &frame, cv::Rect2d &rect);
+
+    cv::Mat calculate(cv::Mat &Ix, cv::Mat &Iy, cv::Mat &It);
+
+    bool isInitialize();
+
+private:
+    bool isInit = false;
+    cv::Mat lastFrame;
+    cv::Rect2d lastRect;
 };
 
 

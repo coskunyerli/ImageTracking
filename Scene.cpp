@@ -7,6 +7,7 @@
 
 #include "Scene.h"
 
+
 Scene::Scene(uint width, uint height) : isStartTracking(false),
                                         cap(0),
                                         sceneShader("./res/shader/vertexShader.glsl", "res/shader/fragmentShader.glsl"),
@@ -36,11 +37,14 @@ bool Scene::draw() {
 
     //Render ----
     rect.draw(rectShader, camera);
+
     //Tracking---
+    cv::Mat frame, gray;
+    this->cap >> frame;
+    cvtColor(frame, gray, CV_RGB2GRAY);
     if (this->isStartTracking) {
 
-        cv::Mat frame, gray;
-        this->cap >> frame;
+
         if (frame.rows == 0 || frame.cols == 0) {
             std::cout << "Frame height or width is zero" << std::endl;
             return false;
@@ -48,29 +52,23 @@ bool Scene::draw() {
 
 
         cv::Rect2d newRect;
-        cvtColor(frame, gray, CV_RGB2GRAY);
+
         try {
-            tracker->update(frame, newRect);
+            tracker.update(gray, newRect);
         } catch (cv::Exception e) {
             cv::error(e);
         }
 
         this->rect.setModel(newRect, this->screenWidth, this->screenHeight);
-        this->model.setTexture(gray.ptr(), gray.cols, gray.rows);
-    }
 
+    }
+    this->model.setTexture(gray.ptr(), gray.cols, gray.rows);
     this->model.draw(sceneShader, camera);
     return true;
 }
 
 void Scene::setModel(Model &model) {
     this->model = model;
-    cv::Mat gray;
-    cap >> firstFrame;
-    cap >> firstFrame;
-    cap >> firstFrame;
-    cvtColor(firstFrame, gray, CV_RGB2GRAY);
-    model.setTexture(gray.ptr(), gray.cols, gray.rows);
 }
 
 void Scene::setCameraPosition(glm::vec3 position) {
@@ -79,29 +77,27 @@ void Scene::setCameraPosition(glm::vec3 position) {
 
 void Scene::startTracking() {
     if (!this->isStartTracking) {
-        tracker->init(firstFrame, this->opencvRect);
-        this->isStartTracking = true;
+        if (this->tracker.isInitialize())
+            this->isStartTracking = true;
     }
 
 }
 
-void Scene::setRect(cv::Rect2d &rect) {
+void Scene::setTracker(cv::Rect2d &rect) {
     if (!this->isStartTracking) {
-        this->opencvRect = rect;
+        cv::Mat img, gray;
+        cap >> img;
+        cv::cvtColor(img, gray, CV_RGB2GRAY);
+        this->tracker.init(gray, rect);
         this->rect.setModel(rect, this->screenWidth, this->screenHeight);
-    }
-}
-
-void Scene::setTracker(cv::Ptr<cv::Tracker> tracker) {
-    if (!this->isStartTracking) {
-        this->tracker = tracker;
     }
 }
 
 void Scene::stopTracking() {
     if (this->isStartTracking) {
         this->isStartTracking = false;
-        this->tracker->clear();
+        cv::Rect2d r;
+        this->rect.setModel(r, this->screenWidth, this->screenHeight);
     }
 
 }

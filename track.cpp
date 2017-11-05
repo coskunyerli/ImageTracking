@@ -1,47 +1,48 @@
-#include <opencv2/core/utility.hpp>
-#include <opencv2/tracking.hpp>
-#include <opencv2/videoio.hpp>
-#include <opencv2/highgui.hpp>
-#include <iostream>
-#include <cstring>
-using namespace std;
-using namespace cv;
-int main( int argc, char** argv ){
-    // show help
+#include "opencv2/video/tracking.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/videoio.hpp"
+#include "opencv2/highgui.hpp"
 
-    // declares all required variables
-    Rect2d roi;
-    Mat frame;
-    // create a tracker object
-    Ptr<Tracker> tracker = Tracker::create( "KCF" );
-    // set input video
-    //std::string video = argv[1];
-    VideoCapture cap(0);
-    // get bounding box
-    cap >> frame;
-    roi=selectROI("tracker",frame);
-    //quit if ROI was not selected
-    if(roi.width==0 || roi.height==0)
-        return 0;
-    // initialize the tracker
-    tracker->init(frame,roi);
-    // perform the tracking process
-    printf("Start the tracking process, press ESC to quit.\n");
-    for ( ;; ){
-        // get frame from the video
-        cap >> frame;
-        // stop the program if no more images
-        if(frame.rows==0 || frame.cols==0)
-            break;
-        // update the tracking result
-        Rect2d r;
-        tracker->update(frame,r);
-        // draw the tracked object
-        rectangle( frame, r, Scalar( 255, 0, 0 ), 2, 1 );
-        // show image with the tracked object
-        imshow("tracker",frame);
-        //quit on ESC button
-        if(waitKey(1)==27)break;
+#include <iostream>
+#include <ctype.h>
+
+using namespace cv;
+using namespace std;
+
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        cout << "error " << endl;
+        return -1;
     }
+    int windowSize = 25;
+    cv::Rect2i rect(100, 100, windowSize, windowSize);
+    Mat im1Char = imread(argv[1], 0), im2Char = imread(argv[1], 0);
+    Mat im1, im2, Ix_m, Iy_m, It_m;
+    im1Char.convertTo(im1, CV_32F);
+    im2Char.convertTo(im2, CV_32F);
+    im1 = im1 / 255.0;
+    im2 = im2 / 255.0;
+
+    Mat Ix_kernel = (Mat_<float>(2, 2) << -1, 1, -1, 1);
+    Mat Iy_kernel = (Mat_<float>(2, 2) << -1, -1, 1, 1);
+    filter2D(im1, Ix_m, -1, Ix_kernel);
+    filter2D(im1, Iy_m, -1, Iy_kernel);
+    It_m = im1 - im2;
+    Mat Ix = Ix_m(rect), Iy = Iy_m(rect), It = -It_m(rect);
+    Mat Ix_r, Iy_r, It_r;
+    cv::resize(Ix, Ix_r, Size(Ix.cols * Ix.rows, 1));
+    cv::resize(Iy, Iy_r, Size(Iy.cols * Iy.rows, 1));
+    cv::resize(It, It_r, Size(It.cols * It.rows, 1));
+    Mat A, A_pinv;
+
+    cv::vconcat(Ix_r, Iy_r, A);
+    invert(A, A_pinv, DECOMP_SVD);
+
+    cout << A_pinv.size() << "  " << It_r.size() << endl;
+    Mat vecs = It_r * A_pinv;
+    cout << vecs << endl;
+    //imshow("vvvvv", im1);
+    //imshow("vvvvvcc", Iy_m);
+    //waitKey();
     return 0;
 }

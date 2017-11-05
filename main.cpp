@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
         std::cout << "Wrong Usage" << std::endl;
         std::cout << "Example " << std::endl;
         std::cout << "./Visualization MIL" << std::endl;
+        std::cout << "Tracking Types < 'MIL' 'BOOSTING' 'KCF' 'TLD' >" << std::endl;
         return -1;
     }
 
@@ -74,6 +75,7 @@ int main(int argc, char *argv[]) {
     Model model(glm::vec3(0.0f, 0.0f, 0.0f));
     // set model to scene
     scene->setModel(model);
+    Tracker tracker;
 
     // render loop
     std::cout << "Select a region and PRESS Enter to start tracking ans PRESS SPACE to stop tracking" << std::endl;
@@ -121,15 +123,13 @@ void processInput(GLFWwindow *window) {
 // ----------------------------------------------------------------------
 void click_callback(GLFWwindow *window, int button, int action, int mods) {
     static double xPos, yPos;
+    static Tracker tracker;
     double xReleasePos, yReleasePos;
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
         glfwGetCursorPos(window, &xPos, &yPos);
     } else if (action == GLFW_RELEASE) {
         glfwGetCursorPos(window, &xReleasePos, &yReleasePos);
         cv::Rect2d rect(cv::Point2d((int) xPos, (int) yPos), cv::Point2d((int) xReleasePos, (int) yReleasePos));
-        scene->setTracker(cv::Tracker::create(trackingName));
-        scene->setRect(rect);
-
-
+        scene->setTracker(rect);
     }
 }

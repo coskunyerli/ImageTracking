@@ -9,6 +9,7 @@
 #include <GLFW/glfw3.h>
 #include "Model.h"
 #include "Rectangle.h"
+#include "Tracker.h"
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/utility.hpp>
 #include <opencv2/tracking.hpp>
@@ -22,8 +23,7 @@ public:
     bool draw();
     void setModel(Model &model);
     void setCameraPosition(glm::vec3 position);
-    void setRect(cv::Rect2d &rect);
-    void setTracker(cv::Ptr<cv::Tracker> tracker);
+    void setTracker(cv::Rect2d &rect);
     void startTracking();
     void stopTracking();
 
@@ -32,9 +32,7 @@ private:
     bool isStartTracking;
     cv::VideoCapture cap;
     Rectangle rect;
-    cv::Rect2d opencvRect;
-    cv::Mat firstFrame;
-    cv::Ptr<cv::Tracker> tracker;
+    Tracker tracker;
     Shader sceneShader;
     Shader rectShader;
     Model model;
