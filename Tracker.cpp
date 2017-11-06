@@ -7,11 +7,23 @@
 
 bool isOutScreen(cv::Rect2d &rect, cv::Size size);
 
-void Tracker::init(cv::Mat &frame, cv::Rect2d &rect) {
-    frame.convertTo(this->lastFrame, CV_64F);
-    this->lastFrame = this->lastFrame / 255.0;
-    this->lastRect = rect;
-    this->isInit = true;
+bool Tracker::init(cv::Mat &frame, cv::Rect2d &rect) {
+    if (rect.area() > 0.0) {
+        if (isOutScreen(rect, frame.size())) {
+            std::cout << "Rectangle is out of screen! Please choose another" << std::endl;
+            return false;
+        } else {
+            frame.convertTo(this->lastFrame, CV_64F);
+            this->lastFrame = this->lastFrame / 255.0;
+            this->lastRect = rect;
+            this->isInit = true;
+        }
+
+    } else {
+        std::cout << "Area of rectangle is zero" << std::endl;
+        return false;
+    }
+    return true;
 
 }
 
@@ -23,11 +35,11 @@ bool Tracker::update(cv::Mat &frame, CV_OUT cv::Rect2d &rect) {
     cv::Mat Ix_kernel = (cv::Mat_<double>(2, 2) << -1, 1, -1, 1);
     cv::Mat Iy_kernel = (cv::Mat_<double>(2, 2) << -1, -1, 1, 1);
     cv::Mat It_kernel = (cv::Mat_<double>(2, 2) << 1, 1, 1, 1);
-    cv::filter2D(im1, Ix_m, -1, Ix_kernel);
-    cv::filter2D(im1, Iy_m, -1, Iy_kernel);
+    cv::filter2D(im1, Ix_m, -1, Ix_kernel); // dI/dx
+    cv::filter2D(im1, Iy_m, -1, Iy_kernel); // dI/dy
     cv::filter2D(im1, It_m1, -1, It_kernel);
     cv::filter2D(im2, It_m2, -1, It_kernel);
-    It_m = It_m1 - It_m2;
+    It_m = It_m1 - It_m2; // dI/dt
     for (int i = 0; i <= 0; i++) {
         cv::Mat vecs = this->calculate(Ix_m, Iy_m, It_m);
         double nvecX = this->lastRect.x + vecs.at<double>(0, 0), nvecY = this->lastRect.y + vecs.at<double>(0, 1);

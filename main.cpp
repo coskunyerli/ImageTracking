@@ -1,3 +1,6 @@
+//
+// Created by coskun  yerli on 29/10/17.
+//
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
 #include "Model.h"
@@ -13,13 +16,14 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 1280;
 const unsigned int SCR_HEIGHT = 720;
-const std::array<std::string, 4> TRACKINGNAMES = {"MIL", "BOOSTING", "KCF", "TLD"};
+//const std::array<std::string, 4> TRACKINGNAMES = {"MIL", "BOOSTING", "KCF", "TLD"};
 
 
 Scene *scene;
-char *trackingName;
+//char *trackingName;
 
 int main(int argc, char *argv[]) {
+    /*
     if (argc != 2) {
 
         std::cout << "Wrong Usage" << std::endl;
@@ -29,11 +33,13 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
+
     trackingName = argv[1];
     if (std::find(TRACKINGNAMES.begin(), TRACKINGNAMES.end(), trackingName) == TRACKINGNAMES.end()) {
         std::cout << "Tracking method is not valid" << std::endl;
         return -1;
     }
+     */
     // set core profile
     // ------------------------------
     glfwInit();
@@ -79,6 +85,7 @@ int main(int argc, char *argv[]) {
 
     // render loop
     std::cout << "Select a region and PRESS Enter to start tracking ans PRESS SPACE to stop tracking" << std::endl;
+    std::cout << "It is better to choice rectangle as a square" << std::endl;
     while (!glfwWindowShouldClose(window)) {
         // event input
         // -----

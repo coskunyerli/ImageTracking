@@ -67,6 +67,4 @@ void Rectangle::setModel(cv::Rect2d &rect, int SWidth, int SHeight) {
     model = glm::translate(model, {2 * d_tx, 2 * d_ty, 0.0f});
     model = glm::scale(model, {d_sx, d_sy, 1.0f});
     this->setModel(model);
-
-// cv::Rect rect(Point(xPos, yPos), Point(xReleasePos, yReleasePos));
 }

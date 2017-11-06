@@ -11,7 +11,7 @@
 class Tracker {
 public:
 
-    void init(cv::Mat &frame, cv::Rect2d &rect);
+    bool init(cv::Mat &frame, cv::Rect2d &rect);
 
     bool update(cv::Mat &frame, cv::Rect2d &rect);
 

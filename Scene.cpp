@@ -24,6 +24,9 @@ Scene::Scene(uint width, uint height) : isStartTracking(false),
 }
 
 bool Scene::draw() {
+    if (!this->cap.isOpened()) {
+        return false;
+    }
     sceneShader.setInt("imageTexture", 0);
     //sceneShader.setVec3("lightPos", lightPos);
     //sceneShader.setVec3("viewPos", camera.Position);
@@ -88,8 +91,10 @@ void Scene::setTracker(cv::Rect2d &rect) {
         cv::Mat img, gray;
         cap >> img;
         cv::cvtColor(img, gray, CV_RGB2GRAY);
-        this->tracker.init(gray, rect);
-        this->rect.setModel(rect, this->screenWidth, this->screenHeight);
+        if (this->tracker.init(gray, rect)) {
+            this->rect.setModel(rect, this->screenWidth, this->screenHeight);
+        }
+
     }
 }
 
