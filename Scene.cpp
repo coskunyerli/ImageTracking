@@ -58,6 +58,7 @@ bool Scene::draw() {
 
         try {
             tracker.update(gray, newRect);
+            //std::cout << "Hey" << std::endl;
         } catch (cv::Exception e) {
             cv::error(e);
         }

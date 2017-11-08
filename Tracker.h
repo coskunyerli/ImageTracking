@@ -8,6 +8,7 @@
 
 #include <opencv2/opencv.hpp>
 
+
 class Tracker {
 public:
 
@@ -15,7 +16,7 @@ public:
 
     bool update(cv::Mat &frame, cv::Rect2d &rect);
 
-    cv::Mat calculate(cv::Mat &Ix, cv::Mat &Iy, cv::Mat &It);
+    cv::Mat calculate(cv::Mat &im1, cv::Mat &im2);
 
     bool isInitialize();
 
